@@ -36,8 +36,27 @@ contract Gem {
         'Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)'
     );
 
+    /**
+     * @param Approval
+     * @dev Emitted when the allowance of `spender/usr` for an `owner/src` is set by a call to {approve}.
+     * @returns `value` is the new allowance.
+     * 
+     *
+     */
+     
+    /**
+     * @pram Transfer
+     * @dev Emitted when `value` tokens are moved from one account (`from/src`) to another (`to/dst`).
+     * 
+     *
+     * @note `value` may be zero.
+     */
+
+    /// @param Approval
     event Approval(address indexed src, address indexed usr, uint256 wad);
+    /// @param Transfer
     event Transfer(address indexed src, address indexed dst, uint256 wad);
+    /// @param Mint
     event Mint(address indexed caller, address indexed user, uint256 wad);
     event Burn(address indexed caller, address indexed user, uint256 wad);
     event Ward(address indexed setter, address indexed user, bool authed);
