@@ -1,15 +1,11 @@
 {
   "name": "gemfab",
   "version": "0.0.11",
+  "description": "`Gem` is an ERC20 token implementation. `GemFab` is a token factory that builds `Gem`s.",
   "main": "./dist/index.js",
-  "scripts": {
-    "init": "git submodule update --init --recursive",
-    "build": "npm run build:sol && npm run build:ts",
-    "build:ts": "npx tsc -b",
-    "build:sol": "hardhat compile",
-    "pretest": "npm run build",
-    "test": "ts-mocha 'test/**'",
-    "fmt": "ts-standard --fix task test index.ts"
+  "directories": {
+    "sol": "sol",
+    "dist": "dist"
   },
   "devDependencies": {
     "@etherpacks/dpack": "^0.0.24",
@@ -26,5 +22,31 @@
   },
   "dependencies": {
     "ethers-eip712": "^0.2.0"
-  }
+  },
+  "scripts": {
+    "init": "git submodule update --init --recursive",
+    "build": "npm run build:sol && npm run build:ts",
+    "build:ts": "npx tsc -b",
+    "build:sol": "hardhat compile",
+    "pretest": "npm run build",
+    "test": "ts-mocha 'test/**'",
+    "fmt": "ts-standard --fix task test index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dapphub/gemfab.git"
+  },
+  "keywords": [
+    "dapphub",
+    "ethereum",
+    "dapp",
+    "dapptools",
+    "gemfab"
+  ],
+  "author": "SEE CONTRIBUTORS",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dapphub/gemfab/issues"
+  },
+  "homepage": "https://github.com/dapphub/gemfab#readme"
 }
