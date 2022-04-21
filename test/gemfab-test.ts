@@ -3,7 +3,7 @@ import { ethers, artifacts, network } from 'hardhat'
 import { want, send, fail, snapshot, revert } from 'minihat'
 const { constants, BigNumber } = ethers
 
-import { test1D, test2D } from './helpers'
+import { test1D, test2D, actual } from './helpers'
 import { bounds as _bounds } from './bounds'
 const bounds = _bounds.gem
 import { TypedDataUtils } from 'ethers-eip712'

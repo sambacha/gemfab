@@ -20,6 +20,26 @@ import { HardhatUserConfig } from 'hardhat/types';
         },
       },
     },
+        compilers: [
+            {
+              version: "0.8.10",
+              settings: {
+                optimizer: {
+                  enabled: true,
+                  runs: 20000
+                }
+              },
+            },
+            {
+              version: "0.5.12",
+              settings: {
+                optimizer: {
+                  enabled: false,
+                  runs: 200
+                }
+              },
+            },
+          ],
   },
   paths: {
     sources: './sol',

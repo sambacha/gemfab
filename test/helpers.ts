@@ -58,6 +58,7 @@ export function test2D(
   makeTests(2, two)
 }
 
+export let actual = {}
 
 // generate 1d tests
 // takes three functions that manipulate state
@@ -96,6 +97,15 @@ export function test1D(
     }
     //let ZERO = typeof(one) == 'boolean' ? false : typeof(one) == 'Buffer' ? Buffer.from(0)
     //  : BigNumber.from(0)
+    let results = {
+      0: {0: 0, 1: 0},
+      1: {0: 0, 1: 0, 2: 0},
+      2: {           1: 0}
+    }
+    let bound, gas
+    after(async () => {
+      actual[name] = results
+    })
     beforeEach(init)
     describe('no change', () => {
       if( bounds[0] != undefined && bounds[0][0] != undefined ) {
@@ -105,6 +115,7 @@ export function test1D(
           const gas = tx.gasUsed
           if( verify ) await verify(ZERO, ZERO)
           const bound = bounds[0][0]
+          results[0][0] = gas.toNumber()
           await check_gas(gas, bound[0], bound[1])
         })
       }
@@ -116,6 +127,7 @@ export function test1D(
           if( verify ) await verify(one, one)
           const gas = tx.gasUsed
           const bound = bounds[1][1]
+          results[1][1] = gas.toNumber()
           await check_gas(gas, bound[0], bound[1])
         })
       }
@@ -128,6 +140,7 @@ export function test1D(
           const gas = tx.gasUsed
           if( verify ) await verify(ZERO, one)
           const bound = bounds[0][1]
+          results[0][1] = gas.toNumber()
           await check_gas(gas, bound[0], bound[1])
         })
       }
@@ -139,6 +152,7 @@ export function test1D(
           const gas = tx.gasUsed
           if( verify ) await verify(one, ZERO)
           const bound = bounds[1][0]
+          results[1][0] = gas.toNumber()
           await check_gas(gas, bound[0], bound[1])
         })
       }
@@ -152,6 +166,7 @@ export function test1D(
           const gas = tx.gasUsed
           if( verify ) await verify(one, two)
           const bound = bounds[1][2]
+          results[1][2] = gas.toNumber()
           await check_gas(gas, bound[0], bound[1])
         })
       }
@@ -165,6 +180,7 @@ export function test1D(
           const gas = tx.gasUsed
           if( verify ) await verify(two, one)
           const bound = bounds[2][1]
+          results[2][1] = gas.toNumber()
           await check_gas(gas, bound[0], bound[1])
         })
       }
