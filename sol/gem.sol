@@ -24,10 +24,10 @@ contract Gem {
     uint256 public totalSupply;
     uint8   public constant decimals = 18;
 
-    mapping (address => uint)                      public balanceOf;
-    mapping (address => mapping (address => uint)) public allowance;
-    mapping (address => uint)                      public nonces;
-    mapping (address => bool)                      public wards;
+    mapping (address => uint256)                      public balanceOf;
+    mapping (address => mapping (address => uint256)) public allowance;
+    mapping (address => uint256)                      public nonces;
+    mapping (address => bool)                         public wards;
 
     bytes32 immutable DOMAIN_SUBHASH = keccak256(
         'EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)'
@@ -66,7 +66,7 @@ contract Gem {
         emit Ward(msg.sender, usr, authed);
     }
 
-    function mint(address usr, uint wad)
+    function mint(address usr, uint256 wad)
       payable external
     {
         if (!wards[msg.sender]) revert ErrWard();
@@ -82,7 +82,7 @@ contract Gem {
         }
     }
 
-    function burn(address usr, uint wad)
+    function burn(address usr, uint256 wad)
       payable external
     {
         if (!wards[msg.sender]) revert ErrWard();
@@ -98,7 +98,7 @@ contract Gem {
         }
     }
 
-    function transfer(address dst, uint wad)
+    function transfer(address dst, uint256 wad)
       payable external returns (bool ok)
     {
         unchecked {
@@ -113,7 +113,7 @@ contract Gem {
         }
     }
 
-    function transferFrom(address src, address dst, uint wad)
+    function transferFrom(address src, address dst, uint256 wad)
       payable external returns (bool ok)
     {
         unchecked {
@@ -139,7 +139,7 @@ contract Gem {
         }
     }
 
-    function approve(address usr, uint wad)
+    function approve(address usr, uint256 wad)
       payable external returns (bool ok)
     {
         ok = true;
@@ -188,4 +188,3 @@ contract GemFab {
         return gem;
     }
 }
-
